@@ -1,0 +1,67 @@
+\ProvidesPackage{commands}
+%%
+%%  Объявление новых команд
+%%
+
+% \newcommand{\имя-команды}{определение команды}
+% Если длинным сложным командам LaTeX надо присвоить имя, это делается с помощью \newcommand. Ниже определяется след оператора
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\E}{\mathds{E}}
+\newcommand{\R}{\mathds{R}}
+\renewcommand{\P}{\mathds{P}}
+\newcommand{\Y}{\mathds{Y}}
+% Если команду надо переопределить используется \renewcommand. В этом есть необходимость, например, для определения мнимой части комплексного числа. Исходная LaTeX команда выдает не общепринятое обозначение
+\renewcommand{\Im}{\operatorname{Im}}
+\renewcommand{\Re}{\operatorname{Re}}
+
+\newcommand{\scalar}[1]{\langle #1 \rangle}
+\newcommand{\like}[2]{\ell\left( #1\ |\ #2 \right)}
+\newcommand{\cprob}[2]{p\left( #1\ |\ #2 \right)}
+\newcommand{\KL}[2]{\text{KL}\left( #1\ ||\ #2 \right)}
+
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+
+\newcommand{\btfl}[1]{\mathcal{#1}}
+
+\DeclareMathOperator{\mse}{MSE}
+\DeclareMathOperator{\mae}{MAE}
+\DeclareMathOperator{\rmse}{RMSE}
+\DeclareMathOperator{\sign}{sign}
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
